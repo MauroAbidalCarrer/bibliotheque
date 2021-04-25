@@ -1,2 +1,21 @@
-premier commit.
-Index.pphp permet de remplir un formulaire, tandis que submit.php récupère un formulaire, ajoute un utilisateur correspondant et affiche te tableau de la base de donnée
+PLAN
+index.php = login
+|		|
+v		|
+log.php		|
+||		v
+||		signUp.php
+|v
+| borrowed.php = livres empruntés|
+| 			        |
+| research.php = recherche livres|----LINKED
+|  			        |
+| list.php = pagination de livres|
+|
+v
+manageBooks.php = gérer livres|
+			      |
+manageUsers.php = gérer  users|----LINKED
+			      |
+manageAplicaitons.php=demandes|
+
