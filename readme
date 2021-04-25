@@ -1,0 +1,2 @@
+premier commit.
+Index.pphp permet de remplir un formulaire, tandis que submit.php récupère un formulaire, ajoute un utilisateur correspondant et affiche te tableau de la base de donnée
