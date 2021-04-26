@@ -1,39 +1,33 @@
-<!DOCTYPE html>
 <?php
 //startup_______________________
-$r = $_POST["return"];
-session_start();
-$_POST = $_SESSION;
 $m = $_POST["mail"];
-echo"mail: " .$m."<br>";
 $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
-
 //header_________________________
 echo"
 	<header>
-		<h2 style.color='green'> <strong> Home page </strong></h2>
-		<form action='researchBooks.php' method='post'>
+		<h2> <strong> Home page </strong></h2>
+		<form action='manageBooks.php' method='post'>
 			<input type='hidden' name='mail' value='" . $m . "'>
-			<input type='submit'  value='livres disponibles'>
+			<input type='submit'  value='livres empruntes'>
 		</form>
 	</header>
 ";
-
-//restitut______________________
-if($r != null)
+//take______________________
+$t = $_POST["take"];
+if($t != null)
 {
-	$sql = "UPDATE books SET currentOwner=null WHERE titre='$r'";
+	$sql = "UPDATE books SET currentOwner='$m' WHERE titre='$t'";
 	if($conn->query($sql) === TRUE)
 		echo "update successfull<br>";
 	else
-		echo "update failed mail: " . $m . "<br>";
+		echo "update failed mail: " . $m . ", take: " . $t . "<br>";
 }
 else
-	echo"restitut = null";
+	echo"take = null";
 //borrowed_books_________________
-$sql = "SELECT `titre` FROM `db1`.`books`i WHERE currentOwner='$m'";
+$sql = "SELECT `titre` FROM `db1`.`books`i WHERE currentOwner IS NULL";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
@@ -44,11 +38,11 @@ if($result->num_rows > 0)
 	{
 		echo"<tr><td>".$row["titre"]."</td>";
 		echo"<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>";
-		echo"<input type='hidden' name='return' value='".$row["titre"]."'>";
-		echo"<input type='submit' value='rendre'></form></td></tr>";
+		echo"<input type='hidden' name='take' value='".$row["titre"]."'>";
+		echo"<input type='submit' value='take'></form></td></tr>";
 	}
 	echo"</table><br>";
 }
 else
-	echo"<h3>vous ne possedez actuellement aucun livre</h3>";
+	echo"<h3>Aucun livre n'est actuellement disponible</h3>";
 ?>

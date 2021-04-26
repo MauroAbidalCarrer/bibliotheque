@@ -7,10 +7,8 @@ log.php		|
 ||		signUp.php
 |v
 | borrowed.php = livres empruntés|
-| 			        |
-| research.php = recherche livres|----LINKED
-|  			        |
-| list.php = pagination de livres|
+|     			         |----LINKED
+| research.php = recherche livres|
 |
 v
 manageBooks.php = gérer livres|
@@ -18,4 +16,3 @@ manageBooks.php = gérer livres|
 manageUsers.php = gérer  users|----LINKED
 			      |
 manageAplicaitons.php=demandes|
-
