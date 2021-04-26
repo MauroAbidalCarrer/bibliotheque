@@ -7,7 +7,11 @@
 </head>
 
 <body>
-	<form action="index.php" method="post">
+	<header>
+		<h2> <strong>Login</strong></h2>
+		<a href="signUp.php">signUp</a>
+	</header>
+	<form method="post">
 		mail:<br>
 		<input type="text" name="mail" required>
 		<br>
@@ -21,11 +25,12 @@
 </html>
 
 <?php
+//startup______________
 $m = $_POST["mail"];
 $p = $_POST["password"];
 if($m == NULL or $p == NULL)
 	exit;
-//make connection
+//make connection_____
 $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
