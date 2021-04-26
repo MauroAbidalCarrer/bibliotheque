@@ -25,26 +25,23 @@ $m = $_POST["mail"];
 $p = $_POST["password"];
 if($m == NULL or $p == NULL)
 	exit;
-$servername = "localhost";
-$username = "root";
-$dbname = "db1";
 //make connection
-$conn = new mysqli($servername, $username, "", $dbname);
+$conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
-//echo"connection succesfull<br>mail: " . $m . "<br>password: ".$p."<br>";
 $sql = "SELECT `mail` FROM `db1`.`user` WHERE mail = '$m' AND password = '$p'";
 $result = $conn->query($sql);
-if($result->num_rows > 0)
+if($result->num_rows == 1)
 {
 	session_start();
 	$_SESSION = $_POST;
 	session_write_close();
 	header('Location: manageBooks.php');
-	exit();
-	//echo"connection to account successfull";
 }
+elseif ($result->num_rows > 1)
+	echo "strange num_rows=".$result->num_rows."<<br>";
 else
 	echo"mail and/or password are incrorrect";
 $conn->close();
+exit();
 ?>
