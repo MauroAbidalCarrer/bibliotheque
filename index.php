@@ -35,7 +35,8 @@ $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
 //log__In_____________
-$sql = "SELECT * FROM `db1`.`user` WHERE mail = '$m' AND password = '$p'";
+//echo"called <br>mail: ".$m."  <br>password: ".$p."<br>";
+$sql = "SELECT * FROM `db1`.`users` WHERE mail = '$m' AND password = '$p'";
 $result = $conn->query($sql);
 if($result->num_rows == 1)
 {
@@ -48,6 +49,7 @@ if($result->num_rows == 1)
 		$_SESSION = $_POST;
 		session_write_close();
 		header('Location: borrowedBooks.php');
+		echo"called<br>";
 	}
 }
 elseif ($result->num_rows > 1)

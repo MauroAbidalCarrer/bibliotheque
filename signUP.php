@@ -1,7 +1,7 @@
 <html>
 	<header>
-		<h2> <strong>Login</strong></h2>
-		<a href="signUp.php">signUp</a>
+		<h2> <strong>sign up</strong></h2>
+		<a href="index.php">login</a>
 	</header>
 	<form method="post">
 		pseudo:<br>
