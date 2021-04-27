@@ -32,7 +32,7 @@ $sql = "SELECT `mail` FROM `db1`.`user` WHERE mail = '$m'";
 $result = $conn->query($sql);
 if($result->num_rows == 0)
 {
-	$sql = "INSERT INTO waitingList(pseudo, mail, password) VALUES('$p', '$m', '$ps')";
+	$sql = "INSERT INTO waitingList(pseudo, mail, password) VALUES('$ps', '$m', '$p')";
 	$result = $conn->query($sql);
 	if($result === TRUE)
 		echo"added to waiting list<br>";

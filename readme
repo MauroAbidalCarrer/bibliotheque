@@ -6,13 +6,11 @@ log.php		|
 ||		v
 ||		signUp.php
 |v
-| borrowed.php = livres empruntés|
-|     			         |----LINKED
-| research.php = recherche livres|
+|borrowed.php = livres empruntés|
+|    			        |----LINKED
+|research.php = recherche livres|
 |
 v
 manageBooks.php = gérer livres|
-			      |
-manageUsers.php = gérer  users|----LINKED
-			      |
-manageAplicaitons.php=demandes|
+			      |----LINKED
+manageUsers.php = gérer  users|

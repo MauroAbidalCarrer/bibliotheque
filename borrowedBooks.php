@@ -1,34 +1,37 @@
 <?php
 //startup_______________________
+$r = $_POST["return"];
+session_start();
+$_POST = $_SESSION;
 $m = $_POST["mail"];
+echo"mail: " .$m."<br>";
 $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
 //header_________________________
 echo"
 	<header>
-		<h2> <strong> Home page </strong></h2>
 		<h2 style.color='green'> <strong> <a href='index.php'>sign Out</strong></a></h2>
-		<form action='borrowed' method='post'>
+		<h2 style.color='green'> <strong> Home page </strong></h2>
+		<form action='researchBooks.php' method='post'>
 			<input type='hidden' name='mail' value='" . $m . "'>
-			<input type='submit'  value='livres empruntes'>
+			<input type='submit'  value='livres disponibles'>
 		</form>
 	</header>
 ";
-//take______________________
-$t = $_POST["take"];
-if($t != null)
+//restitut______________________
+if($r != null)
 {
-	$sql = "UPDATE books SET currentOwner='$m' WHERE titre='$t'";
+	$sql = "UPDATE books SET currentOwner=null WHERE titre='$r'";
 	if($conn->query($sql) === TRUE)
 		echo "update successfull<br>";
 	else
-		echo "update failed mail: " . $m . ", take: " . $t . "<br>";
+		echo "update failed mail: " . $m . "<br>";
 }
 else
-	echo"take = null";
+	echo"restitut = null";
 //borrowed_books_________________
-$sql = "SELECT `titre` FROM `db1`.`books`i WHERE currentOwner IS NULL";
+$sql = "SELECT `titre` FROM `db1`.`books` WHERE currentOwner='$m'";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
@@ -39,11 +42,11 @@ if($result->num_rows > 0)
 	{
 		echo"<tr><td>".$row["titre"]."</td>";
 		echo"<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>";
-		echo"<input type='hidden' name='take' value='".$row["titre"]."'>";
-		echo"<input type='submit' value='take'></form></td></tr>";
+		echo"<input type='hidden' name='return' value='".$row["titre"]."'>";
+		echo"<input type='submit' value='rendre'></form></td></tr>";
 	}
 	echo"</table><br>";
 }
 else
-	echo"<h3>Aucun livre n'est actuellement disponible</h3>";
+	echo"<h3>vous ne possedez actuellement aucun livre</h3>";
 ?>

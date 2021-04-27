@@ -30,18 +30,25 @@ $m = $_POST["mail"];
 $p = $_POST["password"];
 if($m == NULL or $p == NULL)
 	exit;
-//make connection_____
+//make connection______
 $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
-$sql = "SELECT `mail` FROM `db1`.`user` WHERE mail = '$m' AND password = '$p'";
+//log__In_____________
+$sql = "SELECT * FROM `db1`.`user` WHERE mail = '$m' AND password = '$p'";
 $result = $conn->query($sql);
 if($result->num_rows == 1)
 {
-	session_start();
-	$_SESSION = $_POST;
-	session_write_close();
-	header('Location: manageBooks.php');
+	$row = $result->fetch_assoc();
+	if($row["pseudo"] == "admin")
+		header('Location: manageBooks.php');
+	else
+	{
+		session_start();
+		$_SESSION = $_POST;
+		session_write_close();
+		header('Location: borrowedBooks.php');
+	}
 }
 elseif ($result->num_rows > 1)
 	echo "strange num_rows=".$result->num_rows."<<br>";
