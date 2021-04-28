@@ -27,15 +27,22 @@ if($t != null)
 }
 else
 	echo"take = null";
-//borrowed_books_________________
+//research_books_________________
 $sql = "SELECT `titre` FROM `db1`.`books`i WHERE currentOwner IS NULL";
 $result = $conn->query($sql);
+$i = 0;
+if($_POST["index"] != null)
+	$i = $_POST["index"];
+$i = $i - ($i % 10);
+$off = -1;
 if($result->num_rows > 0)
 {
 	echo"<h3>Books</h3>";
 	echo"<table>";
-	echo"<tr><td>titre</td><td>restitut</td></tr>";
-	while($row = $result->fetch_assoc())
+	echo"<tr><td>titre</td><td>take</td></tr>";
+	for($a = 0; $a <= $i; $a++)
+		$row = $result->fetch_assoc();
+	while($row = $result->fetch_assoc() and ++$off < 10)
 	{
 		echo"<tr><td>".$row["titre"]."</td>";
 		echo"<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>";
@@ -46,4 +53,11 @@ if($result->num_rows > 0)
 }
 else
 	echo"<h3>Aucun livre n'est actuellement disponible</h3>";
+echo"off= ".$off."<br>";
+$n = $i + $off;
+if($off >= 10)
+	echo"<form method='post'><input type='hidden' name='index' value='".$n."'><input type='submit' value='suivant'></form>"; 
+$n = $i - 10;
+if($i >= 10)
+	echo"<form method='post'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedent'></form>"; 
 ?>

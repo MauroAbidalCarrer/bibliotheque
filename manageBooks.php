@@ -41,9 +41,9 @@ else
 	echo"titreToAdd is null";
 echo"<h2>add book</h2>
 	<form method='post'>
-		titre:<input type='text' name='titreToAdd'>
-		description:<input type='textarea' name='description'>
-		temps emprunt maximum:<input type='number' name='borrowTime'>
+		titre:<input type='text' name='titreToAdd' required>
+		description:<input type='textarea' name='description' required>
+		temps emprunt maximum:<input type='number' name='borrowTime' required>
 		<input type='submit' value='ajouter'>
 	</form>
 ";

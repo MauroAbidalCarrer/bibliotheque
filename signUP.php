@@ -1,20 +1,29 @@
-<html>
-	<header>
-		<h2> <strong>sign up</strong></h2>
-		<a href="index.php">login</a>
-	</header>
-	<form method="post">
-		pseudo:<br>
-		<input type="text" name="pseudo" required>
-		<br>
-		mail:<br>
-		<input type="text" name="mail" required>
-		<br>
-		password:<br>
-		<input type="password" name="password" required>
-		<br><br>
-		<input type="submit" name="submit">
-	</form>
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>sign Up</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
+	</head>
+
+	<body>
+		<div id="content">
+			<div id="center">
+				<h2 id="contacttitle"> sign Up</h2>
+				<form method='post'>
+					<label>Pseudo</label>
+						<input type="text"  name="pseudo" placeholder="Your Name/firstName.." required>
+					<label>Email address</label>
+						<input type="text" name="mail" placeholder="Your Email.." required>
+					<label>Password</label>
+						<input type="password" name="password" required>
+					<input type="submit" value="Submit">
+				</form>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
 <?php
 //startup______________
