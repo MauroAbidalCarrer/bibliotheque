@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
 <html lang="fr">
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+	<head>
+		<title>Log In</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
+	</head>
 
-<body>
-	<header>
-		<h2> <strong>Login</strong></h2>
-		<a href="signUp.php">signUp</a>
-	</header>
-	<form method="post">
-		mail:<br>
-		<input type="text" name="mail" required>
-		<br>
-		password:<br>
-		<input type="password" name="password" required>
-		<br><br>
-		<input type="submit" name="submit">
-	</form>
+	<body>
+		<div id="content">
+			<div id="center">
+				<h2 id="contacttitle">Log In</h2>
+				<form method='post'>
+					<label>Email address</label>
+						<input type="text" name="mail" placeholder="Your Email.." required>
+					<label>Password</label>
+						<input type="password" name="password" required>
+					<input type="submit" value="Submit">
+				</form>
+				<a href="signUp.php"> <strong>sign Up</strong> </a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
 </body>
 
 </html>

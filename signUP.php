@@ -20,6 +20,7 @@
 						<input type="password" name="password" required>
 					<input type="submit" value="Submit">
 				</form>
+				<a href='index.php'>Log In</a>
 				</div>
 			</div>
 		</div>
