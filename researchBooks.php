@@ -9,7 +9,7 @@ echo"
 	<header>
 		<h2> <strong> Home page </strong></h2>
 		<h2 style.color='green'> <strong> <a href='index.php'>sign Out</strong></a></h2>
-		<form action='borrowed' method='post'>
+		<form action='borrowedBooks.php' method='post'>
 			<input type='hidden' name='mail' value='" . $m . "'>
 			<input type='submit'  value='livres empruntes'>
 		</form>

@@ -31,16 +31,17 @@ if($r != null)
 else
 	echo"restitut = null";
 //borrowed_books_________________
-$sql = "SELECT `titre` FROM `db1`.`books` WHERE currentOwner='$m'";
+$sql = "SELECT * FROM `db1`.`books` WHERE currentOwner='$m'";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
 	echo"<h3>Books</h3>";
 	echo"<table>";
-	echo"<tr><td>titre</td><td>restitut</td></tr>";
+	echo"<tr><td>titre</td><td>description</td><td>rendre</td></tr>";
 	while($row = $result->fetch_assoc())
 	{
 		echo"<tr><td>".$row["titre"]."</td>";
+		echo"<td>".$row["description"]."</td>";
 		echo"<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>";
 		echo"<input type='hidden' name='return' value='".$row["titre"]."'>";
 		echo"<input type='submit' value='rendre'></form></td></tr>";
