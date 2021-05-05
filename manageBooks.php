@@ -6,7 +6,7 @@ if($conn->connect_error)
 //header_________________________
 echo"
 	<head>
-		<title>	Livres emprumptés</title>
+		<title>manage Books</title>
 		<link rel='stylesheet' type='text/css' href='css/style.css'>
 		<meta charset='utf-8'>
 	</head>
@@ -66,13 +66,13 @@ if($result->num_rows > 0)
 	echo"<tr><td>titre</td><td>description</td><td>current owner</td><td>temps d'emprunt max</td><td>remove</td></tr>";
 	while($row = $result->fetch_assoc())
 	{
-		echo"<tr><td>".$row["titre"]."</td>";
-		echo"<td>".$row["description"]."</td>";
-		echo"<td>".$row["currentOwner"]."</td>";
-		echo"<td>".$row["maxUseTime"]."</td>";
-		echo"<td><form method='post'>";
-		echo"<input type='hidden' name='remove' value='".$row["titre"]."'>";
-		echo"<input type='submit' value='retirer'></form></td></tr>";
+		echo"<tr><td>".$row["titre"]."</td>
+		<td>".$row["description"]."</td>
+		<td>".$row["currentOwner"]."</td>
+		<td>".$row["maxUseTime"]."</td>
+		<td><form method='post'>
+		<input type='hidden' name='remove' value='".$row["titre"]."'>
+		<input type='submit' value='retirer'></form></td></tr>";
 	}
 	echo"</table><br>";
 }

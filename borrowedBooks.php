@@ -57,10 +57,8 @@ echo"
 //restitut______________________
 if($r != null)
 {
-	$sql = "UPDATE books SET currentOwner=null WHERE titre='$r'";
-	if($conn->query($sql) === TRUE)
-		echo "update successfull<br>";
-	else
+	$sql = "UPDATE books SET currentOwner=null, borrowDate=null WHERE titre='$r'";
+	if($conn->query($sql) === FALSE)
 		echo "update failed mail: " . $m . "<br>";
 }
 
@@ -71,16 +69,29 @@ if($result->num_rows > 0)
 {
 	echo"<h2 id='contacttitle'>Books</h2>";
 	echo"<table>";
-	echo"<tr><td>titre</td><td>description</td><td>rendre</td></tr>";
+	echo"<tr><td>titre</td><td>description</td><td>temps d'emprunt restant</td><td>rendre</td></tr>";
+	$doitRendre = FAlSE;
 	while($row = $result->fetch_assoc())
 	{
-		echo"<tr><td>".$row["titre"]."</td>";
-		echo"<td>".$row["description"]."</td>";
-		echo"<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>";
-		echo"<input type='hidden' name='return' value='".$row["titre"]."'>";
-		echo"<input type='submit' value='rendre'></form></td></tr>";
+		$borrowedTime = floor((time() - strtotime($row["borrowDate"])) / (60 * 60 * 24));
+		$timeLeft = $row["maxUseTime"] - $borrowedTime;
+		$iddd = "";
+		if($timeLeft <= 0){
+			$timeLeft = 0;
+			$iddd = "id='ROW1'";
+			$doitRendre = TRUE;}
+		echo"
+			<tr ".$iddd."><td>".$row["titre"]."</td>
+			<td>".$row["description"]."</td>
+			<td>".$timeLeft."</td>
+			<td><form method='post'><input type='hidden' name='mail' value='".$m."'>
+			<input type='hidden' name='return' value='".$row["titre"]."'>
+			<input type='submit' value='rendre'></form></td></tr>
+		";
 	}
 	echo"</table>";
+	if($doitRendre == TRUE)
+		echo"<script>alert('Votre temps d emprunt de certain livres(en rouge) a éxcedé celui permit par la biblihotèque, veuillez les rendre le plus tôt possible.')</script>";
 }
 else
 	echo"<h3>vous ne possedez actuellement aucun livre</h3>";

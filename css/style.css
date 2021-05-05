@@ -17,6 +17,7 @@ td{
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+  table tr#ROW1  {background-color:red; color:white;}
 
 
 
