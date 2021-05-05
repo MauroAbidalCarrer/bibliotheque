@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>
-			Froyotech
-		</title>
+		<title>	Livres emprumptés</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<meta charset="utf-8">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
 	</head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </html>
 <?php
 //startup_______________________
@@ -36,6 +50,9 @@ echo"
 			    </ul>
 			</nav>
 		</header>
+		<body>
+			<div id='content'>
+				<div id='center'>
 ";
 //restitut______________________
 if($r != null)
@@ -52,7 +69,7 @@ $sql = "SELECT * FROM `db1`.`books` WHERE currentOwner='$m'";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
-	echo"<div id='content'>	<div id='center'><h2 id='contacttitle'>Books</h2>";
+	echo"<h2 id='contacttitle'>Books</h2>";
 	echo"<table>";
 	echo"<tr><td>titre</td><td>description</td><td>rendre</td></tr>";
 	while($row = $result->fetch_assoc())
@@ -63,8 +80,9 @@ if($result->num_rows > 0)
 		echo"<input type='hidden' name='return' value='".$row["titre"]."'>";
 		echo"<input type='submit' value='rendre'></form></td></tr>";
 	}
-	echo"</table></div></div>";
+	echo"</table>";
 }
 else
 	echo"<h3>vous ne possedez actuellement aucun livre</h3>";
+echo"</div></div></body>";
 ?>

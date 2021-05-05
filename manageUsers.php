@@ -5,11 +5,27 @@ if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
 //header_________________________
 echo"
-	<header>
-		<h2> <strong> Home page </strong></h2>
-		<h2> <strong> <a href='index.php'>sign Out</strong></a></h2>
-		<h2> <strong> <a href='manageBooks.php'>manage books</strong></a></h2>
-	</header>
+	<head>
+		<title>	Livres emprumptés</title>
+		<link rel='stylesheet' type='text/css' href='css/style.css'>
+		<meta charset='utf-8'>
+	</head>
+	<body>
+		<header>
+			<h2 > <strong>Manage users</strong></h2>
+			<nav id='menu-nav'>
+			    <ul>
+				 <li class='bouton'>
+					<form action='index.php'><input type='submit' value='deconnexion'></form>
+				 </li>
+				 <li class='bouton'>
+					<form action='manageBooks.php'><input type='submit' value='manageBooks'></form>
+				 </li>
+			    </ul>
+			</nav>
+		</header>
+		<div id='content'>
+			<div id='center'>
 ";
 //remove_user__________________
 $m = $_POST["mailToRemove"];
@@ -22,8 +38,6 @@ if($m != null)
 	else
 		echo"error could not remove user mail: ".$_POST["mailToRemove"]."<br>";
 }
-else
-	echo"remove is null<br>";
 //refuse_request__________________
 $m = $_POST["refuseRequest"];
 if($m != null)
@@ -35,8 +49,6 @@ if($m != null)
 	else
 		echo"error, request could not be refused mail: ".$_POST["mailToRemove"]."<br>";
 }
-else
-	echo"remove is null<br>";
 //accept_request_______________
 $m = $_POST["acceptRequest"];
 if($m != null)
@@ -57,9 +69,8 @@ if($m != null)
 	else
 		echo"could not add user form waintg list mail: ".$t."<br>";
 }
-else
-	echo"accept request is null<br>";
 //user_table___________________
+echo"<div class='row'><div class='column'>";
 $sql = "SELECT * FROM `db1`.`users`";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
@@ -74,13 +85,12 @@ if($result->num_rows > 0)
 		echo"<td>".$row["password"]."</td>";
 		echo"<td><form method='post'>";
 		echo"<input type='hidden' name='mailToRemove' value='".$row["mail"]."'>";
-		echo"<input type='submit' value='retirer'></form></td><tr>";
+		echo"<input type='submit' value='retirer'></form></td></tr>";
 	}
-	echo"</table><br>";
+	echo"</table>";
 }
-else
-	echo"<h3>il n'y a aucun utilisateur</h3>";
 //waiting_list___________________
+echo"</div><div class='column'>";
 $sql = "SELECT * FROM `db1`.`waitingList`";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
@@ -99,10 +109,11 @@ if($result->num_rows > 0)
 		echo"<input type='hidden' name='password' value='".$row["password"]."'>";
 		echo"<input type='submit' value='accepter'></form></td>";
 		echo"<td><form method='post'> <input type='hidden' name='refuseRequest' value='".$row["mail"]."'>";
-		echo"<input type='submit' value='refuser'></form></td><tr>";
+		echo"<input type='submit' value='refuser'></form></td></tr>";
 	}
-	echo"</table><br>";
+	echo"</table>";
 }
 else
 	echo"<h3>il n'y a aucune demande </>";
+echo"</div></div></div></div></body>";
 ?>
