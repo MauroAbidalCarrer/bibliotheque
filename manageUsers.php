@@ -80,12 +80,14 @@ if($result->num_rows > 0)
 	echo"<tr><td>pseudo</td><td>mail</td><td>password</td><td>remove</td></tr>";
 	while($row = $result->fetch_assoc())
 	{
-		echo"<tr><td>".$row["pseudo"]."</td>";
-		echo"<td>".$row["mail"]."</td>";
-		echo"<td>".$row["password"]."</td>";
-		echo"<td><form method='post'>";
-		echo"<input type='hidden' name='mailToRemove' value='".$row["mail"]."'>";
-		echo"<input type='submit' value='retirer'></form></td></tr>";
+		echo"
+			<tr><td>".$row["pseudo"]."</td>
+			<td>".$row["mail"]."</td>
+			<td>".$row["password"]."</td>
+			<td><form method='post'>
+			<input type='hidden' name='mailToRemove' value='".$row["mail"]."'>
+			<input type='submit' value='retirer'></form></td></tr>
+		";
 	}
 	echo"</table>";
 }
@@ -95,21 +97,25 @@ $sql = "SELECT * FROM `db1`.`waitingList`";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
-	echo"<h3>requestes</h3>";
-	echo"<table>";
-	echo"<tr><td>pseudo</td><td>mail</td><td>password</td><td>accepter</td><td>refuser</td></tr>";
+	echo"
+		<h3>requestes</h3>
+		<table class='styled-table'>
+		<thead><tr><td>pseudo</td><td>mail</td><td>password</td><td>accepter</td><td>refuser</td></tr></thead>
+	";
 	while($row = $result->fetch_assoc())
 	{
-		echo"<tr><td>".$row["pseudo"]."</td>";
-		echo"<td>".$row["mail"]."</td>";
-		echo"<td>".$row["password"]."</td>";
-		echo"<td><form method='post'>";
-		echo"<input type='hidden' name='acceptRequest' value='".$row["mail"]."'>";
-		echo"<input type='hidden' name='pseudo' value='".$row["pseudo"]."'>";
-		echo"<input type='hidden' name='password' value='".$row["password"]."'>";
-		echo"<input type='submit' value='accepter'></form></td>";
-		echo"<td><form method='post'> <input type='hidden' name='refuseRequest' value='".$row["mail"]."'>";
-		echo"<input type='submit' value='refuser'></form></td></tr>";
+		echo"
+			<tr><td>".$row["pseudo"]."</td>
+			<td>".$row["mail"]."</td>
+			<td>".$row["password"]."</td>
+			<td><form method='post'>
+			<input type='hidden' name='acceptRequest' value='".$row["mail"]."'>
+			<input type='hidden' name='pseudo' value='".$row["pseudo"]."'>
+			<input type='hidden' name='password' value='".$row["password"]."'>
+			<input type='submit' value='accepter'></form></td>
+			<td><form method='post'> <input type='hidden' name='refuseRequest' value='".$row["mail"]."'>
+			<input type='submit' value='refuser'></form></td></tr>
+		";
 	}
 	echo"</table>";
 }
