@@ -1,33 +1,27 @@
-* {
-  box-sizing: border-box;
-}
-
-.row {
+/*________TABLES_________*/
+* {box-sizing: border-box;}
+.row 
+{
   margin-left:-5px;
   margin-right:-5px;
 }
-  
-.column {
+.column 
+{
   float: left;
   width: 50%;
   padding: 5px;
 }
-
-/* Clearfix (clear floats) */
-.row::after {
+.row::after 
+{
   content: "";
   clear: both;
   display: table;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
 
-.styled-table {
+/*_________TABLES____________*/
+table 
+{
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
@@ -35,35 +29,124 @@ table {
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-
-.styled-table thead tr {
+thead tr 
+{
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
-
-.styled-table th,
-.styled-table td {
-    padding: 12px 15px;
-}
-
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
-th, td {
+th,td {padding: 12px 15px;}
+tbody tr {border-bottom: 1px solid #dddddd;}
+tbody tr:nth-of-type(even) {background-color: #f3f3f3;}
+tbody tr:last-of-type {border-bottom: 2px solid #009879;}
+th, td 
+{
   text-align: left;
   padding: 16px;
 }
+tr:nth-child(even) {background-color: #f2f2f2;}
+table tr#ROW1  {background-color:#fa3d3d;}
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+/*___________HEADER____________*/
+header{
+	background-color: rgba(255, 255, 255, .5);
+	width: 100%;
+	height: 70px;
+	text-align:center;
+        transform :translateX(-6%);
+}
+
+nav
+{
+	width:100%;
+	text-align: center;
+}
+
+nav#menu-nav ul li.bouton{display: inline-block;}
+nav#menu-nav ul li.bouton a
+{
+	text-decoration: none;
+	color:black;
+	font-size: 20px;
+	margin:20px;
+}
+
+nav#menu-nav ul li.bouton:hover a{background-color: #C5C6C7;}
+
+
+/*___________FORM______________*/
+input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/*___________BODY_______________*/
+#center {
+        background-color: rgba(255, 255, 255, .5);
+        padding: 5px;
+        border-radius: 20px;
+        width:70%;
+        display:flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-top: 50px;
+        margin-right: auto;
+        place-items:center;
+        flex-direction: column;
+        height:100%;
+        transform :translateX(-7%);
+        height: auto;
+}
+
+/*_________FOOTER_____________*/
+footer{
+        width: 100%;
+        height: 60px;
+        background-color: rgba(255, 255, 255, .5);
+        margin-top : 100px;
+        justify-content: center;
+        display:flex;
+}
+
+/*__________TEST______________*/
+.test input{
+  float:left;
 }

@@ -24,8 +24,7 @@ echo"
 			    </ul>
 			</nav>
 		</header>
-		<div id='content'>
-			<div id='center'>
+		<div id='center'>
 ";
 //remove_user__________________
 $m = $_POST["mailToRemove"];
@@ -75,9 +74,10 @@ $sql = "SELECT * FROM `db1`.`users`";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
-	echo"<h3>Users</h3>";
-	echo"<table>";
-	echo"<tr><td>pseudo</td><td>mail</td><td>password</td><td>remove</td></tr>";
+	echo"<h3>Users</h3>
+	<table>
+	<thead><tr><td>pseudo</td><td>mail</td><td>password</td><td>remove</td></tr></thead>
+	";
 	while($row = $result->fetch_assoc())
 	{
 		echo"
@@ -99,7 +99,7 @@ if($result->num_rows > 0)
 {
 	echo"
 		<h3>requestes</h3>
-		<table class='styled-table'>
+		<table>
 		<thead><tr><td>pseudo</td><td>mail</td><td>password</td><td>accepter</td><td>refuser</td></tr></thead>
 	";
 	while($row = $result->fetch_assoc())
@@ -121,5 +121,5 @@ if($result->num_rows > 0)
 }
 else
 	echo"<h3>il n'y a aucune demande </>";
-echo"</div></div></div></div></body>";
+echo"</div></div></div></body>";
 ?>

@@ -1,28 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<title>	Livres emprumptés</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<meta charset="utf-8">
-	</head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td{
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</html>
 <?php
 //startup_______________________
 $r = $_POST["return"];
@@ -34,25 +9,29 @@ if($conn->connect_error)
 	die("connection failed!!" . $conn -> connect_error);
 //header_________________________
 echo"
-		<header id='header1' >
-			<h2 id='title1'> <strong>Livres empruntés</strong></h2>
-			<nav id='menu-nav'>
-			    <ul>
-				 <li class='bouton'>
-					<form action='index.php'><input type='submit'value='déconnexion' color='red'></form>
-				 </li>
-				 <li class='bouton'>
-					<form action='researchBooks.php' method='post'>
-						<input type='hidden' name='mail' value='" . $m . "'>
-						<input type='submit'  value='livres disponibles'>
-					</form>
-				 </li>
-			    </ul>
-			</nav>
-		</header>
-		<body>
-			<div id='content'>
-				<div id='center'>
+	<head>
+		<title>	Livres emprumptés</title>
+		<link rel='stylesheet' type='text/css' href='css/style.css'>
+		<meta charset='utf-8'>
+	</head>
+	<header id='header1' >
+		<h2 id='title1'> <strong>Livres empruntés</strong></h2>
+		<nav id='menu-nav'>
+		    <ul>
+			 <li class='bouton'>
+				<form action='index.php'><input type='submit'value='déconnexion' color='red'></form>
+			 </li>
+			 <li class='bouton'>
+				<form action='researchBooks.php' method='post'>
+					<input type='hidden' name='mail' value='" . $m . "'>
+					<input type='submit'  value='livres disponibles'>
+				</form>
+			 </li>
+		    </ul>
+		</nav>
+	</header>
+	<body>
+		<div id='center'>
 ";
 //restitut______________________
 if($r != null)
@@ -67,9 +46,11 @@ $sql = "SELECT * FROM `db1`.`books` WHERE currentOwner='$m'";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
-	echo"<h2 id='contacttitle'>Books</h2>";
-	echo"<table>";
-	echo"<tr><td>titre</td><td>description</td><td>temps d'emprunt restant</td><td>rendre</td></tr>";
+	echo"
+		<h2 id='contacttitle'>Books</h2>
+		<table>
+		<thead><tr><td>titre</td><td>description</td><td>temps d'emprunt restant</td><td>rendre</td></tr></thead>
+	";
 	$doitRendre = FAlSE;
 	while($row = $result->fetch_assoc())
 	{
@@ -95,5 +76,5 @@ if($result->num_rows > 0)
 }
 else
 	echo"<h3>vous ne possedez actuellement aucun livre</h3>";
-echo"</div></div></body>";
+echo"</div></body>";
 ?>

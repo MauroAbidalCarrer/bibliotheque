@@ -24,8 +24,7 @@ echo"
 			    </ul>
 			</nav>
 		</header>
-		<div id='content'>
-			<div id='center'>
+		<div id='center'>
 ";
 //remove_____________________
 $r = $_POST["remove"];
@@ -47,11 +46,12 @@ if($_POST["titreToAdd"] != null)
 	if($result === FALSE)
 		echo"could not add book: ".$t."<br>";
 }
-echo"<h2>add book</h2>
+echo"
+	<h2>add book</h2>
 	<form method='post'>
 		titre:<input type='text' name='titreToAdd' required><br>
 		description:<input type='text' name='description' required><br>
-		temps emprunt maximum:<input type='number' name='borrowTime' required>
+		temps emprunt maximum:<input type='number' name='borrowTime' required><br>
 		<input type='submit' value='ajouter'>
 	</form>
 ";
@@ -61,22 +61,26 @@ $sql = "SELECT * FROM `db1`.`books`";
 $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
-	echo"<h3>Books</h3>";
-	echo"<table>";
-	echo"<tr><td>titre</td><td>description</td><td>current owner</td><td>temps d'emprunt max</td><td>remove</td></tr>";
+	echo"
+		<h3>Books</h3>
+		<table>
+		<thead><tr><td>titre</td><td>description</td><td>current owner</td><td>temps d'emprunt max</td><td>remove</td></tr></thead>
+	";
 	while($row = $result->fetch_assoc())
 	{
-		echo"<tr><td>".$row["titre"]."</td>
-		<td>".$row["description"]."</td>
-		<td>".$row["currentOwner"]."</td>
-		<td>".$row["maxUseTime"]."</td>
-		<td><form method='post'>
-		<input type='hidden' name='remove' value='".$row["titre"]."'>
-		<input type='submit' value='retirer'></form></td></tr>";
+		echo"
+			<tr><td>".$row["titre"]."</td>
+			<td>".$row["description"]."</td>
+			<td>".$row["currentOwner"]."</td>
+			<td>".$row["maxUseTime"]."</td>
+			<td><form method='post'>
+			<input type='hidden' name='remove' value='".$row["titre"]."'>
+			<input type='submit' value='retirer'></form></td></tr>
+		";
 	}
 	echo"</table><br>";
 }
 else
 	echo"<h3>il n'y a aucun livre</h3>";
-echo"</div></div></body>";
+echo"</div></body>";
 ?>
