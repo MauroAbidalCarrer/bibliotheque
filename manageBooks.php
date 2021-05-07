@@ -39,18 +39,25 @@ if($r != null)
 if($_POST["titreToAdd"] != null)
 {
 	$t = $_POST["titreToAdd"];
-	$b = $_POST["maxUseTime"];
-	$d = $_POST["description"];
-	$sql = "INSERT INTO books (titre, description, maxUseTime) VALUES('$t', '$d', '$b')";
+	$sql = "SELECT * FROM `db1`.`books` WHERE titre='$t'";
 	$result = $conn->query($sql);
-	if($result === FALSE)
-		echo"could not add book: ".$t."<br>";
+	if($result->num_rows == 0)
+	{
+		$b = $_POST["borrowTime"];
+		$d = $_POST["description"];
+		$sql = "INSERT INTO books (titre, description, maxUseTime) VALUES('$t', '$d', '$b')";
+		$result = $conn->query($sql);
+		if($result === FALSE)
+			echo"could not add book: ".$t."<br>";
+	}
+	else
+		echo"<script>alert('error:Un livre avec le même titre éxiste déjà')</script>";
 }
 echo"
 	<h2>add book</h2>
 	<form method='post'>
 		titre:<input type='text' name='titreToAdd' required><br>
-		description:<input type='text' name='description' required><br>
+		description:<input type='text' name='description' placeholder='courte déscription...' required><br>
 		temps emprunt maximum:<input type='number' name='borrowTime' required><br>
 		<input type='submit' value='ajouter'>
 	</form>
@@ -62,7 +69,7 @@ $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
 	echo"
-		<h3>Books</h3>
+		<h2>Books</h2>
 		<table>
 		<thead><tr><td>titre</td><td>description</td><td>current owner</td><td>temps d'emprunt max</td><td>remove</td></tr></thead>
 	";

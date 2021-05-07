@@ -30,12 +30,17 @@ echo"
 $m = $_POST["mailToRemove"];
 if($m != null)
 {
-	$sql = "DELETE FROM users WHERE mail='$m'";
-	$result = $conn->query($sql);
-	if($result === TRUE)
-		echo"user has been removed<br>";
+	if($m == "admin")
+		echo"<script>alert('error: vous essayez de suprimmer votre propre compte')</script>";
 	else
-		echo"error could not remove user mail: ".$_POST["mailToRemove"]."<br>";
+	{
+		$sql = "DELETE FROM users WHERE mail='$m'";
+		$result = $conn->query($sql);
+		if($result === TRUE)
+			echo"user has been removed<br>";
+		else
+			echo"error could not remove user mail: ".$_POST["mailToRemove"]."<br>";
+	}
 }
 //refuse_request__________________
 $m = $_POST["refuseRequest"];

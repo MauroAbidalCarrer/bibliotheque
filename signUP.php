@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>sign Up</title>
+		<title>insccription</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
@@ -9,15 +9,16 @@
 	<body>
 		<div id="content">
 			<div id="center">
-				<h2 id="contacttitle"> sign Up</h2>
+				<h2 id="contacttitle">Demande d'inscription</h2>
 				<form method='post'>
 					<label>Email address</label>
 						<input type="text" name="mail" placeholder="Your Email.." required>
-					<label>Password</label>
+					<label>Mot de passe</label>
 						<input type="password" name="password" required>
 					<input type="submit" value="Submit">
 				</form>
-				<a href='index.php'>Log In</a>
+				Vous avez déjà un compte?
+				<a href='index.php'>Connectez vous</a>
 				</div>
 			</div>
 		</div>
@@ -45,9 +46,11 @@ if($result->num_rows == 0 && $result2->num_rows == 0)
 	$result = $conn->query($sql);
 	if($result === FALSE)
 		echo"error: could not add to waiting list<br>";
+	else
+		echo"<script>alert('votre demande pou un nouveau compte a bien été envoyé')</script>";
 }
 else
-	echo"<script>alert('this eamil is already used')</script>";
+	echo"<script>alert('this email is already used')</script>";
 $conn->close();
 exit();
 ?>

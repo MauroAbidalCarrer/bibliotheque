@@ -52,15 +52,17 @@ if($result->num_rows > 0)
 {
 	//search bar
 	echo"
-		<h2>Books</h2>
+		<h2>rechercher un livre</h2>
 		<form  method='post'>
-			<input type='text' name='research' placeholder='rechercher livre'>
+			<input type='hidden' name='mail' value='".$m."'>
+			<input type='hidden' name='index' value='0'>
+			<input type='text' name='research' placeholder='rechercher un livre'>
 			<input type='submit' value='rechercher'>
 		</form>
+		<h2>livres disponibles</h2>
 	";
 	if($_POST["research"] != null)//search
 	{
-		echo"called research: " .$_POST["research"]. "<br>";
 		$look = "%". $_POST["research"] . "%";
 		$sql = "SELECT * FROM `db1`.`books`i WHERE currentOwner IS NULL and titre LIKE '$look'";
 		$result = $conn->query($sql);
@@ -120,11 +122,11 @@ if($_POST["research"] != null)
 echo"<footer>";
 	$n = $i - 10;
 	if($i >= 10)
-		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedent'></form>"; 
+		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedente'></form>"; 
 	if($i >= 10 || $off >= 10)
 		echo"<pre><strong>     autres pages     </strong></pre>";
 	$n = $i + $off;
 	if($off >= 10)
-		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='suivant'></form>"; 
+		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='suivante'></form>"; 
 echo"</footer>";
 ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>Log In</title>
+		<title>Connéxion</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
@@ -9,7 +9,7 @@
 	<body>
 		<div id="content">
 			<div id="center">
-				<h2 id="contacttitle">Log In</h2>
+				<h2>Connéxion</h2>
 				<form method='post'>
 					<label>Email address</label>
 						<input type="text" name="mail" placeholder="Your Email.." required>
@@ -17,7 +17,8 @@
 						<input type="password" name="password" required>
 					<input type="submit" value="Submit">
 				</form>
-				<a href="signUp.php"> <strong>sign Up</strong> </a>
+				Vous n'avez pas de compte?
+				<a href="signUp.php"> <strong>Inscrivez vous</strong> </a>
 				</div>
 			</div>
 		</div>
