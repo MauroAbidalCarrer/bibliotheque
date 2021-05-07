@@ -6,7 +6,7 @@ if($conn->connect_error)
 //header_________________________
 echo"
 	<head>
-		<title>	Livres emprumptés</title>
+		<title>manage Users</title>
 		<link rel='stylesheet' type='text/css' href='css/style.css'>
 		<meta charset='utf-8'>
 	</head>

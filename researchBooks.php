@@ -35,7 +35,7 @@ echo"
 $book = $_POST["take"];
 if($book != null)
 {
-echo"called<br>";
+	echo"called mail: ".$m ."<br>";
 	$da = date("d-m-Y");
 	$sql = "UPDATE books SET currentOwner='$m', borrowDate='$da' WHERE id='$book'";
 	if($conn->query($sql) === FALSE)
@@ -53,7 +53,7 @@ if($result->num_rows > 0)
 {
 	echo"<h2>Books</h2>
 	<table>
-	<tr><td>titre</td><td>description</td><td>temps d'emprunt(en jours)</td><td>take</td></tr>";
+	<tr><td>titre</td><td>description</td><td>temps d'emprunt(en jours)</td><td>emprunter</td></tr>";
 	for($a = 0; $a <= $i; $a++)
 		$row = $result->fetch_assoc();
 	while($row = $result->fetch_assoc() and ++$off < 10)
@@ -63,19 +63,21 @@ if($result->num_rows > 0)
 			<td>".$row["maxUseTime"]."</td>
 			<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>
 			<input type='hidden' name='take' value='".$row["ID"]."'>
-			<input type='submit' value='take'></form></td></tr>";
+			<input type='submit' value='emprunter'></form></td></tr>";
 	}
 	echo"</table><br>";
 }
 else
 	echo"<h3>Aucun livre n'est actuellement disponible</h3>";
+//footer______________________
 echo"<footer>";
 	$n = $i - 10;
 	if($i >= 10)
-		echo"<form method='post'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedent'></form>"; 
-	echo"<h1>   autres pages   </h1>";
+		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedent'></form>"; 
+	if($i >= 10 || $off >= 10)
+		echo"<h1>   autres pages   </h1>";
 	$n = $i + $off;
 	if($off >= 10)
-		echo"<form method='post'><input type='hidden' name='index' value='".$n."'><input type='submit' value='suivant'></form>"; 
+		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='suivant'></form>"; 
 echo"</footer>";
 ?>
