@@ -11,8 +11,6 @@
 			<div id="center">
 				<h2 id="contacttitle"> sign Up</h2>
 				<form method='post'>
-					<label>Pseudo</label>
-						<input type="text"  name="pseudo" placeholder="Your Name/firstName.." required>
 					<label>Email address</label>
 						<input type="text" name="mail" placeholder="Your Email.." required>
 					<label>Password</label>
@@ -37,19 +35,19 @@ $conn = new mysqli("localhost", "root", "", "db1");
 if($conn->connect_error)
 	die("connection failed!!  " . $conn -> connect_error);
 //add_account________
-$sql = "SELECT `mail` FROM `db1`.`user` WHERE mail = '$m'";
+$sql = "SELECT * FROM `db1`.`users` WHERE mail='$m'";
+$result2 = $conn->query($sql);
+$sql = "SELECT * FROM `db1`.`waitingList` WHERE mail='$m'";
 $result = $conn->query($sql);
-if($result->num_rows == 0)
+if($result->num_rows == 0 && $result2->num_rows == 0)
 {
-	$sql = "INSERT INTO waitingList(pseudo, mail, password) VALUES('$ps', '$m', '$p')";
+	$sql = "INSERT INTO waitingList(mail, password) VALUES('$m', '$p')";
 	$result = $conn->query($sql);
-	if($result === TRUE)
-		echo"added to waiting list<br>";
-	else
+	if($result === FALSE)
 		echo"error: could not add to waiting list<br>";
 }
 else
-	echo"active account with same mail already exitsts<br>";
+	echo"<script>alert('this eamil is already used')</script>";
 $conn->close();
 exit();
 ?>

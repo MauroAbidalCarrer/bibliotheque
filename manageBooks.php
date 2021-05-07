@@ -16,7 +16,7 @@ echo"
 			<nav id='menu-nav'>
 			    <ul>
 				 <li class='bouton'>
-					<form action='index.php'><input type='submit' value='deconnexion'></form>
+					<form action='index.php'><input type='submit' value='déconnexion'></form>
 				 </li>
 				 <li class='bouton'>
 					<form action='manageUsers.php'><input type='submit' value='manageUsers'></form>

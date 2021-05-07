@@ -16,7 +16,7 @@ echo"
 			<nav id='menu-nav'>
 			    <ul>
 				 <li class='bouton'>
-					<form action='index.php'><input type='submit' value='deconnexion'></form>
+					<form action='index.php'><input type='submit' value='déconnexion'></form>
 				 </li>
 				 <li class='bouton'>
 					<form action='manageBooks.php'><input type='submit' value='manageBooks'></form>
@@ -43,9 +43,7 @@ if($m != null)
 {
 	$sql = "DELETE FROM waitingList WHERE mail='$m'";
 	$result = $conn->query($sql);
-	if($result === TRUE)
-		echo"request has been refused<br>";
-	else
+	if($result === FALSE)
 		echo"error, request could not be refused mail: ".$_POST["mailToRemove"]."<br>";
 }
 //accept_request_______________
@@ -54,18 +52,12 @@ if($m != null)
 {
 	$sql = "DELETE FROM waitingList WHERE mail='$m'";
 	$result = $conn->query($sql);
-	if($result === TRUE)
-		echo"user has been removed<br>";
-	else
+	if($result === FALSE)
 		echo"error could not remove user mail: ".$_POST["mailToRemove"]."<br>";
-	$p = $_POST["pseudo"];
 	$ps = $_POST["password"];
-	echo"pseudo: ".$pseudo." <br>password: " .$ps."<br>mail: ".$m."<br>";
-	$sql = "INSERT INTO users (pseudo, mail, password) VALUES('$p', '$m', '$ps')";
+	$sql = "INSERT INTO users (mail, password) VALUES('$m', '$ps')";
 	$result = $conn->query($sql);
-	if($result === TRUE)
-		echo"added user from waiting list<br>";
-	else
+	if($result === FALSE)
 		echo"could not add user form waintg list mail: ".$t."<br>";
 }
 //user_table___________________

@@ -44,7 +44,7 @@ $result = $conn->query($sql);
 if($result->num_rows == 1)
 {
 	$row = $result->fetch_assoc();
-	if($row["pseudo"] == "admin")
+	if($row["mail"] == "admin")
 		header('Location: manageBooks.php');
 	else
 	{
