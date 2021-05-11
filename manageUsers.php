@@ -34,11 +34,12 @@ if($m != null)
 		echo"<script>alert('error: vous essayez de suprimmer votre propre compte')</script>";
 	else
 	{
+		$result = $conn->query("UPDATE books SET currentOwner=null, borrowDate=null WHERE currentOwner='$m'");
+if($result === FALSE)
+	echo"error could not restitut books of ".$m."<br>";
 		$sql = "DELETE FROM users WHERE mail='$m'";
 		$result = $conn->query($sql);
-		if($result === TRUE)
-			echo"user has been removed<br>";
-		else
+		if($result === FALSE)
 			echo"error could not remove user mail: ".$_POST["mailToRemove"]."<br>";
 	}
 }
@@ -51,7 +52,6 @@ if($m != null)
 	if($result === FALSE)
 		echo"error, request could not be refused mail: ".$_POST["mailToRemove"]."<br>";
 }
-//accept_request_______________
 $m = $_POST["acceptRequest"];
 if($m != null)
 {
@@ -73,12 +73,11 @@ if($result->num_rows > 0)
 {
 	echo"<h3>Users</h3>
 	<table>
-	<thead><tr><td>pseudo</td><td>mail</td><td>password</td><td>remove</td></tr></thead>
+	<thead><tr><td>mail</td><td>mot de passe</td><td>retirer</td></tr></thead>
 	";
 	while($row = $result->fetch_assoc())
 	{
 		echo"
-			<tr><td>".$row["pseudo"]."</td>
 			<td>".$row["mail"]."</td>
 			<td>".$row["password"]."</td>
 			<td><form method='post'>
@@ -97,17 +96,15 @@ if($result->num_rows > 0)
 	echo"
 		<h3>requestes</h3>
 		<table>
-		<thead><tr><td>pseudo</td><td>mail</td><td>password</td><td>accepter</td><td>refuser</td></tr></thead>
+		<thead><tr><td>mail</td><td>password</td><td>accepter</td><td>refuser</td></tr></thead>
 	";
 	while($row = $result->fetch_assoc())
 	{
 		echo"
-			<tr><td>".$row["pseudo"]."</td>
 			<td>".$row["mail"]."</td>
 			<td>".$row["password"]."</td>
 			<td><form method='post'>
 			<input type='hidden' name='acceptRequest' value='".$row["mail"]."'>
-			<input type='hidden' name='pseudo' value='".$row["pseudo"]."'>
 			<input type='hidden' name='password' value='".$row["password"]."'>
 			<input type='submit' value='accepter'></form></td>
 			<td><form method='post'> <input type='hidden' name='refuseRequest' value='".$row["mail"]."'>

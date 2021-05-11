@@ -74,17 +74,19 @@ if($result->num_rows > 0)
 			";
 			while($row = $result->fetch_assoc() and ++$off < 10)
 			{
-				echo"<tr><td>".$row["titre"]."</td>
+				echo"
+					<tr><td>".$row["titre"]."</td>
 					<td>".$row["description"]."</td>
 					<td>".$row["maxUseTime"]."</td>
 					<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>
 					<input type='hidden' name='take' value='".$row["ID"]."'>
-					<input type='submit' value='emprunter'></form></td></tr>";
+					<input type='submit' value='emprunter'></form></td></tr>
+				";
 			}
 			echo"</table><br>";
 		}
 		else
-			echo"could not find this book<br>";
+			echo"<script>alert('Aucune occurence trouvée parmi les titres des livres disponibles.')</script>";
 	}
 	else//no search 
 	{
@@ -99,7 +101,8 @@ if($result->num_rows > 0)
 			echo"<tr><td>".$row["titre"]."</td>
 				<td>".$row["description"]."</td>
 				<td>".$row["maxUseTime"]."</td>
-				<td><form method='post'><input type='hidden' name='mail' value='" . $m . "'>
+				<td><form method='post'><input type='hidden' name='mail' value='".$m."'>
+				<input type='hidden' name='index' value='".$i."'>
 				<input type='hidden' name='take' value='".$row["ID"]."'>
 				<input type='submit' value='emprunter'></form></td></tr>";
 		}
@@ -113,7 +116,7 @@ if($_POST["research"] != null)
 	echo"
 		<form>
 			<input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='0'>
-			<input type='submit' value='tout afficher'>
+			<input type='submit' value='afficher tout les livres'>
 		</form>
 	";
 }
@@ -122,7 +125,7 @@ if($_POST["research"] != null)
 echo"<footer>";
 	$n = $i - 10;
 	if($i >= 10)
-		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='precedente'></form>"; 
+		echo"<form method='post'><input type='hidden' name='mail' value='".$m."'><input type='hidden' name='index' value='".$n."'><input type='submit' value='précedente'></form>"; 
 	if($i >= 10 || $off >= 10)
 		echo"<pre><strong>     autres pages     </strong></pre>";
 	$n = $i + $off;

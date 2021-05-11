@@ -9,11 +9,11 @@
 	<body>
 		<div id="content">
 			<div id="center">
-				<h2>Connéxion</h2>
+				<h2>Connexion</h2>
 				<form method='post'>
-					<label>Email address</label>
-						<input type="text" name="mail" placeholder="Your Email.." required>
-					<label>Password</label>
+					<label>adresse email</label>
+						<input type="text" name="mail" placeholder="votre email.." required>
+					<label>mot de passe</label>
 						<input type="password" name="password" required>
 					<input type="submit" value="Submit">
 				</form>

@@ -11,9 +11,9 @@
 			<div id="center">
 				<h2 id="contacttitle">Demande d'inscription</h2>
 				<form method='post'>
-					<label>Email address</label>
-						<input type="text" name="mail" placeholder="Your Email.." required>
-					<label>Mot de passe</label>
+					<label>adresse email</label>
+						<input type="text" name="mail" placeholder="votre email.." required>
+					<label>mot de passe</label>
 						<input type="password" name="password" required>
 					<input type="submit" value="Submit">
 				</form>
@@ -50,7 +50,7 @@ if($result->num_rows == 0 && $result2->num_rows == 0)
 		echo"<script>alert('votre demande pou un nouveau compte a bien été envoyé')</script>";
 }
 else
-	echo"<script>alert('this email is already used')</script>";
+	echo"<script>alert('cette email est déjà utilisée')</script>";
 $conn->close();
 exit();
 ?>

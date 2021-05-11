@@ -75,6 +75,6 @@ if($result->num_rows > 0)
 		echo"<script>alert('Votre temps d emprunt de certain livres(en rouge) a éxcedé celui permit par la biblihotèque, veuillez les rendre le plus tôt possible.')</script>";
 }
 else
-	echo"<h3>vous ne possedez actuellement aucun livre</h3>";
+	echo"<h3>Vous ne possédez actuellement aucun livre.</h3>";
 echo"</div></body>";
 ?>

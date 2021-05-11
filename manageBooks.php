@@ -54,11 +54,11 @@ if($_POST["titreToAdd"] != null)
 		echo"<script>alert('error:Un livre avec le même titre éxiste déjà')</script>";
 }
 echo"
-	<h2>add book</h2>
+	<h2>ajouter un livre</h2>
 	<form method='post'>
 		titre:<input type='text' name='titreToAdd' required><br>
 		description:<input type='text' name='description' placeholder='courte déscription...' required><br>
-		temps emprunt maximum:<input type='number' name='borrowTime' required><br>
+		temps emprunt maximum(en jours):<input type='number' name='borrowTime' required><br>
 		<input type='submit' value='ajouter'>
 	</form>
 ";
@@ -69,9 +69,9 @@ $result = $conn->query($sql);
 if($result->num_rows > 0)
 {
 	echo"
-		<h2>Books</h2>
+		<h2>Livres</h2>
 		<table>
-		<thead><tr><td>titre</td><td>description</td><td>current owner</td><td>temps d'emprunt max</td><td>remove</td></tr></thead>
+		<thead><tr><td>titre</td><td>description</td><td>utilisateur actuelle</td><td>temps d'emprunt max(en jours)</td><td>retirer</td></tr></thead>
 	";
 	while($row = $result->fetch_assoc())
 	{
